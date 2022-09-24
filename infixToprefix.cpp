@@ -55,7 +55,7 @@ int prec(char x){
 	}
 	return -1 ;
 }
-int isOperand(char number){
+int isNumberics(char number){
 	return (number >='1' && number <= '9');
 }
 void reverse(char data[]){
@@ -71,7 +71,7 @@ int infixToPrefix(Stack stack , char prefix[]){
 	int size = strlen(prefix) , j = 0 ;
 	char temp[size];
 	for(int i = 0 ; i < size ; i++){
-		if(isOperand(prefix[i])){
+		if(isNumberics(prefix[i])){
 			temp[j++] = prefix[i];
 		}
 		else if(prefix[i] == '('){
