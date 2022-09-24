@@ -57,7 +57,7 @@ int prec(char ch){
 	}
 	return -1;
 }
-int isOperand(char chars){
+int isNumberics(char chars){
 	return (chars >= '1' && chars <= '9') ;
 }
 int infixConvertPostfix(Stack stack , char infix[]){
@@ -65,7 +65,7 @@ int infixConvertPostfix(Stack stack , char infix[]){
 	int size = strlen(infix) , k = 0;
 	char temp[size]; 
 	for(int i = 0 ; i < size ; i++){
-		if(isOperand(infix[i])){
+		if(isNumberics(infix[i])){
 			temp[k++] = infix[i];
 		}
 		else if(infix[i] == '('){
