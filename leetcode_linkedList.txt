@@ -1,0 +1,153 @@
+206.Đảo ngược danh sách liên kết 
+Java
+public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode current = head;
+        ListNode next = null;
+        while(current != null){
+            next = current.next;
+            current.next =prev;
+            prev = current;
+            current = next;
+        }
+        head =prev;
+        return head;
+    }
+}
+C++
+Void reverseList(Node** head){
+	Node* prev = NULL;
+	Node* current = *head;
+	Node* next = NULL;
+	while(current != NULL){
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	head =prev;
+}
+876.Tìm phần tử ở giữa và xuất phần còn lại của danh sach liên kết
+ex : input :  1 2 3 4 5
+     output:  3 4 5 
+     input :  1 2 3 4 5 6
+     output:  4 5 6
+java
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        int count = 0 ; 
+        ListNode current = head;
+        while(head != null){
+            count++;
+            head = head.next;
+        }
+        for(int i = 1 ; i <= count/2; i++){
+            current = current.next;
+        }
+        return current;
+    }
+    public void printList(ListNode head){
+        head = middleNode(head);
+        while(head != null){
+            System.out.print(head.val+" ");
+            head = head.next;
+        }
+    }
+}
+
+cach 2 : 
+class Solution {
+	public ListNode middleNode(ListNode head){
+		ListNode current = head , mid = head;
+		if(head == null || head.next == null)
+			return head;
+		while(current.next != null && current.next.next != null){
+			current = current.next.next;
+			mid = mid.next;
+		}
+		return mid;
+	}
+	public void printList(ListNode head){
+		head = middleNode(head);
+		if(head == null || head.next == null) System.out.print("is empty");
+		while(head != null || head.next != null){
+		 	System.out.print(head.val+" ");
+			head = head.next;
+		}
+	}
+}
+
+1290 chuyển nhị phân thành thập phân 
+public int getDecimalValue(ListNode head) {
+        int result = 0;
+        while(head != null){
+            result = result*2 + head.val;
+            head = head.next;
+        }
+        return result;
+    }
+
+Xoa phan tu nhap tu ban phim 
+public ListNode removeElements(ListNode head, int val) {
+        if(head == null)return head;
+        while(head != null && head.val == val){
+            head = head.next;
+        }
+        
+        ListNode curr = head;
+        while(curr != null && curr.next != null){
+            if(curr.next.val == val){
+                curr.next = curr.next.next;
+            }else{
+                curr = curr.next;
+            }
+        }
+        return head;
+    }
+
+234. Palindrome Linked List
+ public ListNode reverseList(ListNode head){
+        ListNode prev = null;
+        ListNode current = head;
+        ListNode next = null;
+        if(head == null || head.next == null) return head;
+        while(current != null){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev ;
+        return head;
+    }
+    public ListNode middleNode(ListNode head){
+        int count = 0;
+        ListNode current = head , mid = head;
+        if(head == null || head.next == null)   return head;
+        while(current.next != null && current.next.next != null){
+            current = current.next.next;
+            mid = mid.next;
+        }
+        return mid;
+    }
+    public boolean isPalindrome(ListNode head) {
+        ListNode mid = middleNode(head);
+        ListNode haftList = reverseList(mid.next);
+        ListNode current = head;
+        while(haftList != null){
+            if(current.val != haftList.val) return false;
+            current = current.next;
+            haftList = haftList.next;
+        }
+        return true;
+    }
