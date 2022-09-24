@@ -104,10 +104,20 @@ int infixToPrefix(Stack stack , char prefix[]){
 int main(){
 	Stack stack;
 	init(stack);
-	char data[] = "(1+2)*5";
+	char data[] = "5*(1+2)";
 	/*	data test 
 		1) 2/3 + 4*5 
 		2) (1+2)*5
 	*/
+	reverse(data);
+	int size = strlen(data);
+	for(int i = 0 ; i < size ; i++){
+		if(data[i] == '('){
+			data[i] = ')';
+		}
+		else if(data[i] == ')'){
+			data[i] = '(';
+		}
+	}
 	infixToPrefix(stack,data);
 }
