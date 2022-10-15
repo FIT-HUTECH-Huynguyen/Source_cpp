@@ -61,7 +61,6 @@ int isNumberics(char chars){
 	return (chars >= '1' && chars <= '9') ;
 }
 int infixConvertPostfix(Stack stack , char infix[]){
-	stack = createNode(strlen(infix));
 	int size = strlen(infix) , k = 0;
 	char temp[size]; 
 	for(int i = 0 ; i < size ; i++){
@@ -92,7 +91,7 @@ int infixConvertPostfix(Stack stack , char infix[]){
 	while(stack != NULL){
 		temp[k++] = pop(stack);
 	}
-	temp[k++] = '\0';
+	temp[k] = '\0';
 	puts(temp);
 }
 int main(){
